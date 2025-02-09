@@ -1,21 +1,16 @@
-﻿using Core.Enums;
-using Microsoft.AspNetCore.Identity;
+﻿using Core.Entities.Base;
+using Core.Enums;
 
-namespace Core;
+namespace Core.Entities;
 
-public class User : IdentityUser
+public class User : BaseEntity
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
-    public DateTime DateAdded { get; set; } = DateTime.UtcNow;
-    public DateTime? DateUpdated { get; set; }
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string PhoneNumber { get; set; } = string.Empty;
-    public string PasswordHash { get; set; } = string.Empty;
     public Address? Address { get; set; }
     public UserRole Role { get; set; } = UserRole.Worker;
-    public bool IsActive { get; set; } = true;
-    public string? RefreshToken { get; set; }
-    public DateTime? RefreshTokenExpiryTime { get; set; }
+    public byte[]? ProfilePicture { get; set; }
+    public List<Schedule> Schedules { get; set; } = [];
 }

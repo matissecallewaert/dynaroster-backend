@@ -1,6 +1,6 @@
 using Core.Entities.Base;
 
-namespace Core;
+namespace Core.Entities;
 
 public class Shift: BaseEntity
 {
@@ -9,6 +9,9 @@ public class Shift: BaseEntity
     public DateTime ShiftDate { get; set; }
     public TimeSpan StartTime { get; set; }
     public TimeSpan EndTime { get; set; }
-
+    public Guid ScheduleId { get; set; }
+    public Schedule Schedule { get; set; }
     public List<ShiftAssignment> Assignments { get; set; } = [];
+    public Address Location { get; set; }
+    public Guid LocationId { get; set; }
 }

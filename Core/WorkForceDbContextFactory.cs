@@ -1,22 +1,26 @@
-using Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 
-namespace WorkforcePlanner;
-
-public class WorkForceDbContextFactory : IDesignTimeDbContextFactory<WorkForceDbContext>
+namespace Core
 {
-    public WorkForceDbContext CreateDbContext(string[] args)
+    public class WorkForceDbContextFactory : IDesignTimeDbContextFactory<WorkForceDbContext>
     {
-        var configuration = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json")
-            .Build();
+        public WorkForceDbContext CreateDbContext(string[] args)
+        {
+            var basePath = Directory.GetCurrentDirectory(); // Use current directory
 
-        var optionsBuilder = new DbContextOptionsBuilder<WorkForceDbContext>();
-        var connectionString = configuration.GetConnectionString("DefaultConnection");
-        optionsBuilder.UseNpgsql(connectionString);
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(basePath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true) // Add for dev environment
+                .Build();
 
-        return new WorkForceDbContext(optionsBuilder.Options);
+            var optionsBuilder = new DbContextOptionsBuilder<WorkForceDbContext>();
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            optionsBuilder.UseNpgsql(connectionString);
+
+            return new WorkForceDbContext(optionsBuilder.Options);
+        }
     }
 }

@@ -1,5 +1,3 @@
-using WorkforcePlanner.Core.Entities.Base;
-
 namespace Core.Entities.Base;
 
 public abstract class BaseEntity

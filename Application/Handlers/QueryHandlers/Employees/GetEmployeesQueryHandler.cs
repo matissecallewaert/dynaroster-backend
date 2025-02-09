@@ -1,11 +1,11 @@
 using Core;
 using Core.Dtos;
 using Core.Entities.Base;
-using Core.Queries.Users;
+using Core.Queries.Employees;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Handlers.QueryHandlers.Users;
+namespace Application.Handlers.QueryHandlers.Employees;
 
 public class GetEmployeesQueryHandler : IRequestHandler<GetEmployeesQuery, PaginatedList<EmployeeDto>>
 {
@@ -26,7 +26,7 @@ public class GetEmployeesQueryHandler : IRequestHandler<GetEmployeesQuery, Pagin
             return new PaginatedList<EmployeeDto>(new List<EmployeeDto>(), 0, request.PageNumber, request.PageSize);
         }
 
-        var query = manager.Workers.AsQueryable();
+        var query = _context.Workers.Where(w => w.ManagerId == request.ManagerId);
 
         var totalRecords = await query.CountAsync(cancellationToken);
         var employees = await query
@@ -39,7 +39,8 @@ public class GetEmployeesQueryHandler : IRequestHandler<GetEmployeesQuery, Pagin
                 FirstName = e.FirstName,
                 LastName = e.LastName,
                 Email = e.Email,
-                PhoneNumber = e.PhoneNumber
+                PhoneNumber = e.PhoneNumber,
+                ProfilePicture = e.ProfilePicture
             })
             .ToListAsync(cancellationToken);
 

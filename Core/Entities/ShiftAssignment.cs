@@ -1,6 +1,6 @@
 using Core.Entities.Base;
 
-namespace Core;
+namespace Core.Entities;
 
 public class ShiftAssignment: BaseEntity
 {

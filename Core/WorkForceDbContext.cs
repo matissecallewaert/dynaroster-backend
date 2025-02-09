@@ -1,13 +1,14 @@
 using Core.Configurations;
+using Core.Entities;
 using Core.Entities.Base;
 using Core.Extensions;
 using MediatR;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Core
 {
-    public class WorkForceDbContext : IdentityDbContext, DbContext
+    public class WorkForceDbContext :  DbContext
     {
         private readonly IMediator _mediator;
         private readonly ILogger<WorkForceDbContext> _logger;
@@ -15,15 +16,15 @@ namespace Core
         public WorkForceDbContext(
             DbContextOptions<WorkForceDbContext> options,
             IMediator mediator,
-            ILogger<WorkForceDbContext> logger
-        )
+            ILogger<WorkForceDbContext> logger)
             : base(options)
         {
             _mediator = mediator;
             _logger = logger;
         }
 
-        // DbSets for Workforce Management
+        public WorkForceDbContext(DbContextOptions<WorkForceDbContext> options) : base(options) { }
+
         public DbSet<User> Users { get; set; }
         public DbSet<Worker> Workers { get; set; }
         public DbSet<Manager> Managers { get; set; }
@@ -32,6 +33,7 @@ namespace Core
         public DbSet<WorkPreference> WorkPreferences { get; set; }
         public DbSet<Shift> Shifts { get; set; }
         public DbSet<ShiftAssignment> ShiftAssignments { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
 
         public async Task<int> SaveChangesWithTimestamps(bool performAsync)
         {
@@ -107,6 +109,7 @@ namespace Core
             modelBuilder.ApplyConfiguration(new WorkPreferenceConfiguration());
             modelBuilder.ApplyConfiguration(new ShiftConfiguration());
             modelBuilder.ApplyConfiguration(new ShiftAssignmentConfiguration());
+            modelBuilder.ApplyConfiguration(new ScheduleConfiguration());
         }
     }
 }

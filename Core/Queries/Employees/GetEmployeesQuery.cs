@@ -2,7 +2,7 @@ using Core.Dtos;
 using Core.Entities.Base;
 using MediatR;
 
-namespace Core.Queries.Users;
+namespace Core.Queries.Employees;
 
 public class GetEmployeesQuery : IRequest<PaginatedList<EmployeeDto>>
 {

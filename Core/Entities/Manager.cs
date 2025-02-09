@@ -1,6 +1,6 @@
 using Core.Enums;
 
-namespace Core;
+namespace Core.Entities;
 
 public class Manager : User
 {

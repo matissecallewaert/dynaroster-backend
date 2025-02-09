@@ -1,6 +1,9 @@
-namespace Core.Commands;
+using MediatR;
 
-public class UploadProfilePictureCommand
+namespace Core.Commands.Users;
+
+public class UploadProfilePictureCommand : IRequest<bool>
 {
-    Byte[] Image { get; set; }
+    public Guid Id { get; set; }
+    public byte[] Image { get; set; }
 }

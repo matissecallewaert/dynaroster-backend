@@ -18,16 +18,14 @@ namespace Application.Handlers.CommandHandlers.Users
             CancellationToken cancellationToken
         )
         {
-            var user = await _context.Users.FindAsync(request.Id);
+            var user = await _context.Users.FindAsync(new object?[] { request.Id }, cancellationToken: cancellationToken);
             if (user == null)
                 return false;
 
             user.FirstName = request.FirstName;
             user.LastName = request.LastName;
-            user.Email = request.Email;
             user.PhoneNumber = request.PhoneNumber;
             user.Address = request.Address;
-            user.IsActive = request.IsActive;
 
             await _context.SaveChangesAsync(cancellationToken);
             return true;

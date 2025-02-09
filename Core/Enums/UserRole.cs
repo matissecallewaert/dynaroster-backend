@@ -2,7 +2,8 @@ namespace Core.Enums;
 
 public enum UserRole
 {
-    Admin,
+    SuperAdmin,
     Worker,
-    Manager
+    Manager,
+    User
 }

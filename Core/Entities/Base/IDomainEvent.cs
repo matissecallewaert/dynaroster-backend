@@ -1,6 +1,6 @@
-namespace WorkforcePlanner.Core.Entities.Base;
-
 using MediatR;
+
+namespace Core.Entities.Base;
 
 public interface IDomainEvent : INotification
 {

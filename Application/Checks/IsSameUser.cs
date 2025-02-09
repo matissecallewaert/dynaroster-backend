@@ -2,12 +2,12 @@ using System.Security.Claims;
 
 namespace Application.Checks;
 
-public class IsSameUser
+public static class IsSameUser
 {
     public static bool CheckIsSameUser(ClaimsPrincipal user, Guid id)
     {
-        var userId = user.FindFirst("sub")?.Value;
-        var userRole = user.FindFirst("role")?.Value;
+        var userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var userRole = user.FindFirst(ClaimTypes.Role)?.Value;
 
         return userRole == "SuperAdmin" || userId == id.ToString();
     }

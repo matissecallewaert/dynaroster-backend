@@ -1,3 +1,4 @@
+using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -7,7 +8,6 @@ namespace Core.Configurations
     {
         public void Configure(EntityTypeBuilder<Worker> builder)
         {
-            builder.ToTable("Workers");
             builder.HasMany(x => x.Skills)
                 .WithOne()
                 .HasForeignKey(x => x.WorkerId)

@@ -8,21 +8,61 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.12" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.11" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.1">
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.12">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.12">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Application\bin\Debug\net8.0\Application.deps.json" />
+    <_ContentIncludedByDefault Remove="Core\bin\Debug\net8.0\Core.deps.json" />
+    <_ContentIncludedByDefault Remove="Application\obj\Application.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="Application\obj\Debug\net8.0\Application.sourcelink.json" />
+    <_ContentIncludedByDefault Remove="Application\obj\project.assets.json" />
+    <_ContentIncludedByDefault Remove="Application\obj\project.packagespec.json" />
+    <_ContentIncludedByDefault Remove="Core\obj\Core.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="Core\obj\Debug\net8.0\Core.sourcelink.json" />
+    <_ContentIncludedByDefault Remove="Core\obj\project.assets.json" />
+    <_ContentIncludedByDefault Remove="Core\obj\project.packagespec.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Application\**" />
+    <Compile Remove="Core\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Application\**" />
+    <EmbeddedResource Remove="Core\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Application\**" />
+    <Content Remove="Core\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Application\**" />
+    <None Remove="Core\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="Application\Application.csproj" />
+    <ProjectReference Include="Core\Core.csproj" />
   </ItemGroup>
 
 </Project>
